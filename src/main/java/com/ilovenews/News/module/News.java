@@ -2,22 +2,24 @@ package com.ilovenews.News.module;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Audited;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Audited.Table(name = "newsdatabase")
+@Table(name = "newsdatabase")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class News {
+    @Id
     private int id;
     private String title;
     private String shortDescription;
     private String description;
-    private LocalDateTime localDateTime;
+    private LocalDateTime publishedAt;
 }
