@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NewsService {
     private final NewsRepository repository;
+    private final ChatModel chat;
 
     public void addNews(News news) {
         repository.save(news);
@@ -45,4 +46,13 @@ public class NewsService {
         repository.deleteById(id);
         return true;
     }
+
+    public String aiExplainer(int id) {
+        News explainerNews = repository.findById(id).orElse(null);
+        if (explainerNews!=null) {
+            return chat.call(explainerNews.getDescription() + "\n Explain this news to me!")
+        }
+        throw new NewsNotFoundException();
+    }
+
 }

@@ -24,4 +24,9 @@ public class NewsControllerPublic {
     public ResponseEntity<List<News>> titleNews(@RequestParam String title) {
         return new ResponseEntity<>(service.titleNews(title),HttpStatus.OK);
     }
+
+    @GetMapping("/explain")
+    public ResponseEntity<String> explain(@RequestHeader int id) {
+        return new ResponseEntity<>(service.aiExplainer(),HttpStatus.OK);
+    }
 }
